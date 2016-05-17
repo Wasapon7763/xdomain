@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="author" content="Yosuke Higuchi">
+
+<title>Typing Game</title>
+
+<link rel="stylesheet" type="text/css" href="css/menu.css" media="all">
+<link rel="stylesheet" type="text/css" href="css/game.css" media="all">
+<script src="js/words.js"></script>
+<script src="js/expl.js"></script>
+<script src="js/switch_disp.js"></script>
+<script src="js/key_input.js"></script>
+<script src="js/display.js"></script>
+<script src="js/time.js"></script>
+<script src="js/initial.js"></script>
+
+</head>
+<body>
+
+<div id="mainframe">
+
+  <div id="menu">
+    <ul id="leftside">
+      <div style="color:#2F4F4F; text-align:center; width:300px; height:80px; padding:60px 40px 20px 40px; font-size:40px">SELECT LEVEL</div>
+      <li name="expl"></li>
+    </ul>
+    <ul id="level">
+      <li onmouseover="expl(1)" onclick="switch_game1()"><a href="#">LEVEL1</a></li>
+      <li onmouseover="expl(2)" onclick="switch_game2()"><a href="#">LEVEL2</a></li>
+      <li onmouseover="expl(3)" onclick="switch_game3()"><a href="#">LEVEL3</a></li>
+    </ul>
+  </div>
+
+  <div id="gameframe">
+    <table>
+      <tr>
+        <td id="time">Time<div id="t" style="font-size:50px"></div></td>
+        <td id="score">Score<div id="s" style="font-size:50px"></div></td>
+        <td id="combo">Combo<div id="c" style="font-size:50px">0</div></td>
+      </tr>
+    </table>
+    <div id="battle">
+      <div id="enemy"><div id="enemy_word">PRESS ANY KEY TO START!!!</div></div>
+      <div id="me"><img src="img/pikachu.gif" style="height:100%; margin:0 0 0 80px;"><img src="img/keyboard.png" style="margin:0 0 30px 5px;"></img></img></div>
+    </div>
+    <div id="comment" style="font-size:30px;">日本語が表示されるよん</div>
+  </div>
+
+  <div id="result">
+
+  </div>
+
+</div>
+
+</body>
+</html>

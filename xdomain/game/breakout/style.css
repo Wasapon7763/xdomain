@@ -1,0 +1,48 @@
+body{
+  font-family: Helvetica, "fantasy", fantasy;
+}
+#wrapper{
+  margin:auto;
+  width:606px;
+  height:606px;
+  padding:20px;
+}
+canvas{
+  background:#000000;
+  border:3px solid#FF7F50;
+  border-radius:10px;
+}
+#wrapper #msg{
+  color:#FFFFFF;
+  font-size:30px;
+  text-align:center;
+  width:606px;
+  height:46px;
+  padding:340px 0px 120px;
+  position:absolute;
+  display:inherit;
+}
+#wrapper #menu{
+  font-weight:bold;
+  text-align:center;
+  width:606px;
+  height:106px;
+}
+#wrapper #menu #score{
+  font-size:40px;
+  background:#FF7F50;
+  width:380px;
+  height:86px;
+  float:left;
+  border:10px solid#FF7F50;
+  border-radius:10px;
+}
+#wrapper #menu #level{
+  font-size:38px;
+  background:#FF7F50;
+  width:180px;
+  height:86px;
+  float:right;
+  border:10px solid#FF7F50;
+  border-radius:10px;
+}

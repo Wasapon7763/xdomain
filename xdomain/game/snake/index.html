@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Snake</title>
+  <script type="text/javascript">
+    document.onkeydown=getKey;
+    var score=0;
+    var level=1;
+    var life=0;
+    var ctx;
+    var timer;
+    var time=50;
+    var miracle=0;
+    var input=-1;
+    var prevInput;
+    var locX=[];
+    var locY=[];
+    var foodX;
+    var foodY;
+    while (foodX!=200&&foodY!=200){
+      foodX=Math.floor(Math.random()*39+1)*10;
+      foodY=Math.floor(Math.random()*39+1)*10;
+    }
+    function getKey(){
+      var e=event.keyCode;
+      if (e==27) location.reload();
+      if (e==73) e=38;
+      if (e==74) e=37;
+      if (e==75) e=40;
+      if (e==76) e=39;
+      if (e==37||e==38||e==39||e==40) input=e;
+      if ((prevInput==37&&input==39)||(prevInput==39&&input==37)) input=prevInput;
+      if ((prevInput==38&&input==40)||(prevInput==40&&input==38)) input=prevInput;
+    }
+    function init(){
+      var canvas=document.getElementById("cnvs");
+      if (canvas.getContext){
+        ctx=canvas.getContext("2d");
+        locX.push(200);
+        locY.push(200);
+        locX.push(200);
+        locY.push(200);
+        timer=setInterval(draw, time);
+      }
+    }
+    function draw(){
+      var len=locX.length;
+      ctx.globalCompositeOperation="source-over";
+      /*ctx.fillStyle="rgba(8,8,12,1)";
+      ctx.fillRect(0,0,400,400);
+      ctx.globalCompositeOperation="lighter";*/
+
+
+      for (var i=len-1;i>0;i--){
+        locX[i]=locX[i-1];
+        locY[i]=locY[i-1];
+      }
+
+      if (input==37&&prevInput!=39){
+        prevInput=37;
+        locX[0]-=10;
+      }
+      if (input==38&&prevInput!=40){
+        prevInput=38;
+        locY[0]-=10;
+      }
+      if (input==39&&prevInput!=37){
+        prevInput=39;
+        locX[0]+=10;
+      }
+      if (input==40&&prevInput!=38){
+        prevInput=40;
+        locY[0]+=10;
+      }
+
+      if (locX[0]<0||locY[0]<0||locX[0]>390||locY[0]>390||onMe()==1){
+        if (life>0){
+          for (var i=0;i<len;i++){
+          locX[i]=200;
+          locY[i]=200;
+        }
+          ctx.fillStyle="#000000";
+          ctx.fillRect(0,0,400,400);
+          life--;
+          document.getElementById("life").innerHTML="♥ : "+life;
+        }
+        else{
+           clearInterval(timer);
+           alert(score);
+        }
+      }
+
+      if (onFood()==1){
+        if (miracle==1){
+          life++;
+          document.getElementById("life").innerHTML="♥ : "+life;
+          miracle=0;
+        }
+        else score+=10;
+        if (score%50==0&&score!=0){
+          level++;
+          for (var i=0;i<4;i++){
+            locX.push(-1);
+            locY.push(-1);
+          }
+        }
+        locX.push(-1);
+        locY.push(-1);
+        foodX=Math.floor(Math.random()*39+1)*10;
+        foodY=Math.floor(Math.random()*39+1)*10;
+        while (foodOnMe()==1){
+          foodX=Math.floor(Math.random()*39+1)*10;
+          foodY=Math.floor(Math.random()*39+1)*10;
+        }
+        if (Math.floor(Math.random()*8)==1) miracle=1;
+      }
+
+      if ((score+10)%50==0){
+         ctx.fillStyle="#ffff3b";
+      }
+      else if(miracle==1){
+        var r=0,g=0,b=0;
+        var rndm=Math.floor(Math.random()*5);
+        if (rndm==0){ r=0; g=0; b=255;}
+        if (rndm==1){ r=0; g=255; b=204;}
+        if (rndm==2){ r=102; g=255; b=0;}
+        if (rndm==3){ r=255; g=102; b=0;}
+        if (rndm==4){ r=255; g=0; b=204;}
+        ctx.fillStyle="rgb("+r+","+g+","+b+")";
+      }
+      else{
+        ctx.fillStyle="#40E0D0";
+      }
+      ctx.fillRect(foodX,foodY,10,10);
+      ctx.fillStyle="#FFFFFF";
+      ctx.fillRect(locX[0],locY[0],10,10);
+      ctx.fillStyle="#000000";
+      ctx.fillRect(locX[len-1],locY[len-1],10,10);
+
+      document.getElementById("score").innerHTML="Score : "+score;
+      document.getElementById("level").innerHTML="Level "+level;
+    }
+    function onFood(){
+      for (var i=0;i<locX.length-1;i++){
+        if (locX[i]==foodX&&locY[i]==foodY) return 1;
+      }
+      return 0;
+    }
+    function onMe(){
+      for (var i=1;i<locX.length&&score!=0;i++){
+        if (locX[0]==locX[i]&&locY[0]==locY[i]) return 1;
+      }
+      return 0;
+    }
+    function foodOnMe(){
+      for (var i=0;i<locX.length;i++){
+        if (locX[i]==foodX&&locY[i]==foodY) return 1;
+      }
+      return 0;
+    }
+  </script>
+  <style type="text/css">
+    body{
+      background:#D3D3D3;
+    }
+    #frame{
+      width:404px;
+      height:600px;
+      margin:auto;
+    }
+    canvas{
+      background:#000000;
+      border:2px solid#A9A9A9;
+    }
+    #scoreboard{
+      background:#000000;
+      width:280px;
+      height:60px;
+      padding:10px 20px;
+      border-radius:20px;
+      float:left;
+    }
+    #scoreboard #score{
+      color:#FFFFFF;
+      font-size:36px;
+      text-align:center;
+      width:280px;
+      height:40px;
+    }
+    #scoreboard #life{
+      color:#ff2a56;
+    }
+    #levelboard{
+      background:#000000;
+      width:60px;
+      height:60px;
+      padding:10px;
+      border-radius:20px;
+      float:right;
+    }
+    #levelboard #level{
+      font-size:20px;
+      color:#FFFFFF;
+      text-align:center;
+    }
+  </style>
+</head>
+<body onload="init()">
+  <div id="frame">
+    <canvas id="cnvs" width="400px" height="400px"></canvas>
+    <div id="scoreboard">
+      <div id="score"></div>
+      <div id="life">♥ : 0</div>
+    </div>
+    <div id="levelboard">
+      <div id="level">Level 1</div>
+    </div>
+    <div style="text-align:center">cursor keys or jilk to move<br>esc for new game<br>get 5 units long when leveled up</div>
+  </div>
+</body>
+</html>

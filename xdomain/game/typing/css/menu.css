@@ -1,0 +1,76 @@
+body{
+  background:#F5DEB3;
+  font-family: Helvetica, "fantasy", fantasy;
+}
+#mainframe {
+    width: 760px;
+    height: 540px;
+    background: rgb(240, 230, 140);
+    margin: auto;
+    padding: 20px;
+    border: 10px solid rgb(47, 79, 79);
+    border-radius: 20px;
+}
+#mainframe #menu {
+    width: 760px;
+    height: 540px;
+    background: rgb(245, 245, 220);
+    border-radius: 20px;
+    display:inherit;
+}
+#mainframe #menu #leftside {
+    list-style:none;
+    width: 380px;
+    height: 540px;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+}
+#mainframe #menu #leftside li {
+    height: 320px;
+    width: 340px;
+    list-style: none;
+    padding: 20px;
+    margin: 0px;
+}
+#mainframe #menu #leftside p {
+    width: 280px;
+    height: 260px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 200%;
+    margin: 0px;
+    padding: 20px;
+    border: 10px solid rgb(240, 230, 140);
+    border-radius: 20px;
+}
+#mainframe #menu #level {
+    width: 380px;
+    height: 540px;
+    float: right;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+#mainframe #menu #level li {
+    text-align: center;
+    font-size: 80px;
+    width: 340px;
+    height: 90px;
+    transition-duration: 0.2s;
+    background: rgb(244, 164, 96);
+    padding: 10px;
+    margin: 52px 10px;
+    border-radius: 20px;
+}
+#mainframe #menu #level li:hover{
+  transform:scale(1.05);
+}
+#mainframe #menu #level li a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    width: 340px;
+    height: 90px;
+
+    display: block;
+}
