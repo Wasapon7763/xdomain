@@ -66,6 +66,8 @@ function change_word(i){
     case 70:
       if (string.charCodeAt(string_at)==72&&string.charCodeAt(string_at+1)==85)
         string=string.substring(0,string_at)+"F"+string.substring(string_at+1, string.length);
+      if (string.charCodeAt(string_at)==72&&string.charCodeAt(string_at+1)==72)
+        string=string.substring(0,string_at)+"FF"+string.substring(string_at+2, string.length);
       break;
     //shauo -> syauo s:83 h:72 y:89 a:65 u:85 o:79
     case 89:
