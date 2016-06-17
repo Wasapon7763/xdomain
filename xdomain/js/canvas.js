@@ -1,6 +1,7 @@
 var ctx;
 var time=0;
 var itvl=30;
+var interval;
 
 var W=window.innerWidth;
 var H=window.innerHeight;
@@ -20,7 +21,7 @@ function init(){
   if (canvas.getContext){
     ctx=canvas.getContext("2d");
     setup();
-    setInterval(draw, 33);
+    interval=setInterval(draw, 33);
   }
 }
 

@@ -1,8 +1,10 @@
 $(function () {
     sizing();
+    clearInterval(interval);
     init();
     $(window).resize(function() {
         sizing();
+        clearInterval(interval);
         init();
     });
 });
