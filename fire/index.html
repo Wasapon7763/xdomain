@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>fire</title>
+  <style type="text/css">
+  #wrapper{
+    background:#000000;
+    width:600px;
+    height:600px;
+    margin:auto;
+    cursor:none;
+  }
+  </style>
+  <script type="text/javascript">
+  var ctx;
+  var wrapperDiv;
+  var H=600;
+  var W=600;
+  var mouseX;
+  var mouseY;
+  function init(){
+    var canvas=document.getElementById("cnvs");
+    if (canvas.getContext){
+      ctx=canvas.getContext("2d");
+      wrapperDiv=document.getElementById("wrapper");
+      document.onmousemove=mouseMove;
+      setInterval(draw, 33);
+    }
+  }
+  function draw(){
+    ctx.globalCompositeOperation="source-over";
+    ctx.fillStyle="rgba(0,0,0,0.2)";
+    ctx.fillRect(0, 0, 600, 600);
+    ctx.globalCompositeOperation="lighter";
+
+    for (var i=0;i<10;i++){
+      ctx.fillStyle="rgba(255, 0, 0, "+0.3+")";
+      ctx.beginPath();
+      ctx.arc(mouseX+Math.random()*10-5, mouseY+Math.random()*10-5, 3, 0, Math.PI*2, false);
+      ctx.arc(mouseX+Math.random()*6-3, mouseY+Math.random()*10-5-10, 2, 0, Math.PI*2, false);
+      ctx.arc(mouseX+Math.random()*4-2, mouseY+Math.random()*10-5-20, 1, 0, Math.PI*2, false);
+
+      ctx.fill();
+    }
+  }
+  function mouseMove(){
+    mouseX=event.clientX-wrapperDiv.offsetLeft;
+    mouseY=event.clientY-wrapperDiv.offsetTop;
+  }
+  </script>
+</head>
+<body onload="init()">
+  <div id="wrapper">
+    <canvas id="cnvs" width="600px" height="600px"></canvas>
+  </div>
+</body>
+</html>
