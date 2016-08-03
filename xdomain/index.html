@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script type="text/javascript">
-    function load(){
-      location.href="indexmain.html";
-    }
-  </script>
-</head>
-<body onload="load()">
-</body>
+  <head>
+
+    <link rel="stylesheet" type="text/css" href="css/hexmenu.css" media=all>
+    <link rel="stylesheet" type="text/css" href="css/main.css" media=all>
+    <link rel="stylesheet" type="text/css" href="css/sidemenu.css" media=all>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <script src="js/style.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+
+    <div id="namebox">
+      <div id="name">Wasapon Development Page</div>
+    </div>
+
+    <div id="hexmenu">
+
+        <div class="row-odd">
+          <li style="list-style:none">
+            <a href="#"><div class="hex"><div class="title"></div></div></a>
+            <a href="#"><div class="hex"><div class="title"></div></div></a>
+            <a href="#"><div class="hex"><div class="title"></div></div></a>
+          </li>
+        </div>
+
+        <div class="row-even">
+          <li style="list-style:none">
+            <a href="#"><div class="hex"><div class="title"></div></div></a>
+            <a href="canvas/index.html"><div class="hex"><div class="title" style="font-size:50px">Canvas</div></div></a>
+            <a href="#"><div class="hex"><div class="title"></div></div></a>
+          </li>
+        </div>
+
+        <div class="row-odd">
+          <li style="list-style:none">
+            <a href="#"><div class="hex"><div class="title"></div></div></a>
+            <a href="game/index.html"><div class="hex"><div class="title">Game</div></div></a>
+            <a href="#"><div class="hex"><div class="title"></div></div></a>
+          </li>
+        </div>
+
+    </div>
+
+    <div id="sidebar">
+      <a id="open" href="#">
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+      <div id="sidemenu">
+				<ul>
+					<li style="color:#FF0000">About</li>
+					<li name="about"><a href="#">Game</a></li>
+					<li name="about"><a href="#">Canvas</a></li>
+				</ul>
+			</div>
+    </div>
+
+  </body>
 </html>
