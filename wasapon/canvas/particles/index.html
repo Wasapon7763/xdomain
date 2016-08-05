@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>coloful particles</title>
+  <script type="text/javascript">
+    const NUM=800;
+    const w=600;
+    const h=600;
+    var locX=new Array(NUM);
+    var locY=new Array(NUM);
+    var spdX=new Array(NUM);
+    var spdY=new Array(NUM);
+    var r=new Array(NUM);
+    var g=new Array(NUM);
+    var b=new Array(NUM);
+    var radius=new Array(NUM);
+    var ctx;
+    function init(){
+      var canvas=document.getElementById("cnvs");
+      if (canvas.getContext){
+        ctx=canvas.getContext("2d");
+        for (var i=0;i<NUM;i++){
+          locX[i]=w/2;
+          locY[i]=h/2;
+          spdX[i]=Math.random()*6.0-3.0;
+          spdY[i]=Math.random()*6.0-3.0;
+          r[i]=Math.floor(Math.random()*64);
+          g[i]=Math.floor(Math.random()*64);
+          b[i]=Math.floor(Math.random()*64);
+          radius[i]=1.0+Math.random()*10.0;
+        }
+        setInterval(draw, 33);
+      }
+    }
+    function draw(){
+      ctx.globalCompositeOperation="source-over";
+      ctx.fillStyle="rgba(8,8,12,.1)";
+      ctx.fillRect(0,0,w,h);
+      ctx.globalCompositeOperation="lighter";
+      for (var i=0;i<NUM;i++){
+        locX[i]+=spdX[i];
+        locY[i]+=spdY[i];
+        if (locX[i]<0||locX[i]>w) continue;
+        if (locY[i]<0||locY[i]>w) continue;
+        ctx.beginPath();
+        ctx.fillStyle="rgb("+r[i]+","+g[i]+","+b[i]+")";
+        ctx.arc(locX[i],locY[i],radius[i],0,Math.PI*2,false);
+        ctx.fill();
+      }
+    }
+  </script>
+  <style type="text/css">
+    body{
+      background:#494949;
+    }
+    #frame{
+      width:640px;
+      height:640px;
+      margin:auto;
+    }
+    canvas {
+      margin:0 auto;
+      background:#000000;
+    }
+  </style>
+</head>
+<body onload="init()">
+  <div id="frame">
+    <canvas id="cnvs" width="600px" height="600px"></canvas>
+  </div>
+</body>
+</html>

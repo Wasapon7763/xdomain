@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Contoroling Ball</title>
+<script type="text/javascript">
+  document.onkeydown=getKey;
+  var ctx;
+  var input;
+  var locX=[];
+  var locY=[];
+  function getKey(){
+    input=event.keyCode;
+  }
+  function init(){
+    var canvas=document.getElementById("cnvs");
+    if (canvas.getContext){
+      ctx=canvas.getContext("2d");
+      locX.push(0);
+      locY.push(0);
+      setInterval(draw, 33);
+    }
+  }
+  function draw(){
+    ctx.globalCompositeOperation="source-over";
+    ctx.fillStyle="rgba(8,8,12,1)";
+    ctx.fillRect(0,0,400,400);
+    ctx.globalCompositeOperation="lighter";
+
+    if (input==37&&locX[0]>0) locX[0]-=5;
+    if (input==38&&locY[0]>0) locY[0]-=5;
+    if (input==39&&locX[0]<390) locX[0]+=5;
+    if (input==40&&locY[0]<390) locY[0]+=5;
+
+    ctx.fillStyle="#FFFFFF";
+    ctx.fillRect(locX[0],locY[0],10,10);
+  }
+</script>
+<style type="text/css">
+  #frame{
+    margin:auto;
+    width:400px;
+    height:400px;
+  }
+  canvas{
+    border:2px solid#C0C0C0;
+  }
+</style>
+</head>
+<body onload="init()">
+  <div id="frame"><canvas id="cnvs" width="400px" height="400px"></canvas></div>
+</body>
+</html>

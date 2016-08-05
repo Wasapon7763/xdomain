@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_js">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="author" content="Yosuke Higuchi">
+<title>Game</title>
+</head>
+    <script type="text/javascript">
+        var num=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+        var b=0;
+        while (1){
+            if (b==2)
+                break;
+            var x=Math.floor(Math.random()*4);
+            var y=Math.floor(Math.random()*4);
+            if (num[x][y]==0){
+                num[x][y]=2;
+                b++;
+            }
+        }
+        function up(){
+            goup();
+            for (var i=0;i<4;i++){
+                for (var j=0;j<3;j++){
+                    if (num[j][i]==num[j+1][i]){
+                        num[j][i]=num[j][i]*2;
+                        num[j+1][i]=0;
+                    }
+                }
+            }
+            goup();
+            rand();
+            disp();
+        }
+        function goup(){
+            for (var i=0;i<4;i++){
+                for (var k=0;k<3;k++){
+                    for (var j=0;j<3;j++){
+                        if (num[j][i]==0&&num[j+1][i]!=0){
+                            num[j][i]=num[j+1][i];
+                            num[j+1][i]=0;
+                        }
+                    }
+                }
+            }
+        }
+        function right(){
+            goright();
+            for (var i=0;i<4;i++){
+                for (var j=3;j>0;j--){
+                    if (num[i][j]==num[i][j-1]){
+                        num[i][j]=num[i][j]*2;
+                        num[i][j-1]=0;
+                    }
+                }
+            }
+            goright();
+            rand();
+            disp();
+        }
+        function goright(){
+            for (var i=0;i<4;i++){
+                for (var k=0;k<3;k++){
+                    for (var j=3;j>0;j--){
+                        if (num[i][j]==0&&num[i][j-1]!=0){
+                            num[i][j]=num[i][j-1];
+                            num[i][j-1]=0;
+                        }
+                    }
+                }
+            }
+        }
+        function left(){
+            goleft();
+            for (var i=0;i<4;i++){
+                for (var j=0;j<4;j++){
+                    if (num[i][j]==num[i][j+1]){
+                        num[i][j]=num[i][j]*2;
+                        num[i][j+1]=0;
+                    }
+                }
+            }
+            goleft();
+            rand();
+            disp();
+        }
+        function goleft(){
+            for (var i=0;i<4;i++){
+                for (var k=0;k<3;k++){
+                    for (var j=0;j<3;j++){
+                        if (num[i][j]==0&&num[i][j+1]!=0){
+                            num[i][j]=num[i][j+1];
+                            num[i][j+1]=0;
+                        }
+                    }
+                }
+            }
+        }
+        function down(){
+            godown();
+            for (var i=0;i<4;i++){
+                for (var j=3;j>0;j--){
+                    if (num[j][i]==num[j-1][i]){
+                        num[j][i]=num[j][i]*2;
+                        num[j-1][i]=0;
+                    }
+                }
+            }
+            godown();
+            rand();
+            disp();
+        }
+        function godown(){
+            for (var i=0;i<4;i++){
+                for (var k=0;k<3;k++){
+                    for (var j=3;j>0;j--){
+                        if (num[j][i]==0&&num[j-1][i]!=0){
+                            num[j][i]=num[j-1][i];
+                            num[j-1][i]=0;
+                        }
+                    }
+                }
+            }
+        }
+        function disp(){
+            var count=0;
+            var elements=document.getElementsByName("e")
+            for (var i=0;i<4;i++){
+                for (var j=0;j<4;j++){
+                    if (num[i][j]!=0)
+                        elements[count].innerHTML=num[i][j];
+                    else
+                        elements[count].innerHTML="";
+                    count++;
+            }
+        }
+        }
+        function rand(){
+            var newvalue=2
+            var z=Math.floor(Math.random()*4)
+            if (z==0)
+                newvalue=4;
+            while (1){
+                var x=Math.floor(Math.random()*4);
+                var y=Math.floor(Math.random()*4);
+                if (num[x][y]==0){
+                    num[x][y]=newvalue;
+                    break;
+                }
+            }
+        }
+    </script>
+    <body onload="disp()">
+        <table border="2" width="400" height="400" align="center">
+            <tr align="center">
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+            </tr>
+            <tr align="center">
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+            </tr>
+            <tr align="center">
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+            </tr>
+            <tr align="center">
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+                <td width="100" height="100"><b><font size="5" name="e"></font></b></td>
+            </tr>
+        </table>
+        <table align="center" width="30" height="30">
+            <tr width="30">
+                <td></td>
+                <td align="center">
+                    <input type="button" value="up" style="width:50px; height:35px" onclick="up()" >
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="left" style="width:50px; height:35px" onclick="left()">
+                </td>
+                <td></td>
+                <td>
+                    <input type="button" value="right" style="width:50px; height:35px" onclick="right()">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" value="down" style="width:50px; height:35px" onclick="down()">
+                </td>
+                <td></td>
+            </tr>
+        </table>
+
+    </body>
+</html>
