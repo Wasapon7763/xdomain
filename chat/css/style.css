@@ -1,0 +1,45 @@
+body{
+  font-family: "Hiragino Kaku Gothic ProN","メイリオ", sans-serif;
+}
+
+#wrapper{
+  margin: auto;
+  width: 1200px;
+  height: 726px;
+  position: relative;
+}
+#maindisplay{
+  float: left;
+  width: 1000px;
+  height: 722px;
+  border: 2px solid #000000;
+}
+#textboard .text{
+  float: left;
+  width: 250px;
+  height: 520px;
+  position: relative;
+
+}
+#userboard .user{
+  float: left;
+  margin: 0 24px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #FF0000;
+  border-radius: 50px;
+}
+
+.text:nth-child(odd){
+  background:rgba(0, 0, 0, 0.1);
+}
+
+#wrapper #textbox{
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  text-align: center;
+  bottom: 0px;
+  right: 0px;
+  width: 196px;
+  height: 100px;
+}
